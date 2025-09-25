@@ -1,0 +1,24 @@
+{
+  "name": "comentarios-app",
+  "version": "1.0.0",
+  "description": "Sistema profissional de comentários com interface moderna",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -c-1",
+    "dev": "npx http-server . -p 8080 -c-1 --cors"
+  },
+  "keywords": [
+    "comments",
+    "sistema",
+    "comentarios",
+    "frontend",
+    "javascript",
+    "html",
+    "css"
+  ],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

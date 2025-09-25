@@ -9,25 +9,30 @@ Você precisa criar o ambiente de execução desta API com o maior número de pa
 A aplicação será uma API REST que está disponível neste repositório. Através dela os internautas enviam comentários em texto de uma máteria e acompanham o que outras pessoas estão falando sobre o assunto em destaque. O funcionamento básico da API consiste em uma rota para inserção dos comentários e uma rota para listagem.
 Os comandos de interação com a API são os seguintes:
 
-Start da app
-
-cd app
-gunicorn --log-level debug api:app
 
 Criando e listando comentários por matéria
 
-# matéria 1
-curl -sv http://localhost:8000/api/comment/new -X POST -H 'Content-Type: application/json' -d '{"email":"alice@example.com","comment":"first post!","content_id":1}'
-curl -sv localhost:8000/api/comment/new -X POST -H 'Content-Type: application/json' -d '{"email":"alice@example.com","comment":"ok, now I am gonna say something more useful","content_id":1}'
-curl -sv localhost:8000/api/comment/new -X POST -H 'Content-Type: application/json' -d '{"email":"bob@example.com","comment":"I agree","content_id":1}'
 
-# matéria 2
-curl -sv localhost:8000/api/comment/new -X POST -H 'Content-Type: application/json' -d '{"email":"bob@example.com","comment":"I guess this is a good thing","content_id":2}'
-curl -sv localhost:8000/api/comment/new -X POST -H 'Content-Type: application/json' -d '{"email":"charlie@example.com","comment":"Indeed, dear Bob, I believe so as well","content_id":2}'
-curl -sv localhost:8000/api/comment/new -X POST -H 'Content-Type: application/json' -d '{"email":"eve@example.com","comment":"Nah, you both are wrong","content_id":2}'
+# ################### Network ####################################
+# Network
 
-# listagem matéria 1
-curl -sv localhost:8000/api/comment/list/1
+docker network create comentarios-net
+# ######################################################################
 
-# listagem matéria 2
-curl -sv localhost:8000/api/comment/list/2
+# ################### APP backend ####################################
+# docker build
+docker build -t api-comentarios .
+
+
+# docker run
+docker run -d -p 8000:8000 --name api-comentarios --network comentarios-net api-comentarios
+# ######################################################################
+
+# ################### APP Frontend ####################################
+# docker build
+docker build -t front-comentarios .
+
+# docker run
+docker run -d --name front --network comentarios-net -p 8080:80 comentarios-front
+
+# ######################################################################

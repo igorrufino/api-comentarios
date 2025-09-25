@@ -1,14 +1,17 @@
-# Usando a imagem base oficial do Python 3.7
+# Usando imagem base oficial Python
 FROM python:3.7-slim
 
-# Definindo o diretório de trabalho no container
-WORKDIR /api
+# Diretório de trabalho
+WORKDIR /app
 
-# Copiando os arquivos da aplicação para o container
-COPY . /api
+# Copiar arquivos da API
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Instalação dos requirements!
-RUN pip install -r requirements.txt
+COPY api.py .
 
-# Iniciando a aplicação com o Gunicorn!
+# Expor a porta da API
+EXPOSE 8000
+
+# Subir com Gunicorn
 CMD ["gunicorn", "-b", "0.0.0.0:8000", "api:app"]
