@@ -13,26 +13,24 @@ Os comandos de interação com a API são os seguintes:
 Criando e listando comentários por matéria
 
 
-# ################### Network ####################################
+
 # Network
-
 docker network create comentarios-net
-# ######################################################################
 
-# ################### APP backend ####################################
-# docker build
+
+# APP backend 
+## docker build
 docker build -t api-comentarios .
 
 
-# docker run
+## docker run
 docker run -d -p 8000:8000 --name api-comentarios --network comentarios-net api-comentarios
-# ######################################################################
 
-# ################### APP Frontend ####################################
-# docker build
+
+# APP Frontend 
+## docker build
 docker build -t front-comentarios .
 
-# docker run
+## docker run
 docker run -d --name front --network comentarios-net -p 8080:80 comentarios-front
 
-# ######################################################################
