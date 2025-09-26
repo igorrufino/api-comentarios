@@ -1,15 +1,13 @@
-## 📘 README Geral (`README.md` na raiz)
-
 ```markdown
 # Sistema de Comentários – Deploy Completo 🚀
 
 Este projeto contém **dois aplicativos** que trabalham juntos:
 
 1. **Backend (API Flask)** → Gerencia os comentários.  
-   📄 [README da API](api/README.md)
+   📄 [README da API](api/README.md(https://github.com/igorrufino/api-comentarios/tree/develop/app#readme))
 
 2. **Frontend (Nginx + HTML/JS/CSS)** → Interface de usuário.  
-   📄 [README do Frontend](app-front/README.md)
+   📄 [README do Frontend](app-front/README.md(https://github.com/igorrufino/api-comentarios/tree/develop/app-front#readme))
 
 ---
 
